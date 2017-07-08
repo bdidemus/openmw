@@ -444,6 +444,8 @@ namespace MWGui
 
     void InventoryWindow::onPinToggled()
     {
+        Settings::Manager::setBool("inventory pin", "Windows", mPinned);
+
         MWBase::Environment::get().getWindowManager()->setWeaponVisibility(!mPinned);
     }
 
@@ -491,7 +493,7 @@ namespace MWGui
         {
             if (script.empty() || ptr.getRefData().getLocals().getIntVar(script, "pcskipequip") == 0)
             {
-                boost::shared_ptr<MWWorld::Action> action = ptr.getClass().use(ptr);
+                std::shared_ptr<MWWorld::Action> action = ptr.getClass().use(ptr);
 
                 action->execute (player);
             }

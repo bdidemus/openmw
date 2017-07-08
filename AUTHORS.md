@@ -108,6 +108,7 @@ Programmers
     Narmo
     Nathan Jeffords (blunted2night)
     NeveHanter
+    Nialsy
     Nikolay Kasyanov (corristo)
     nobrakal
     Nolan Poe (nopoe)
@@ -117,6 +118,7 @@ Programmers
     Pi03k
     Pieter van der Kloet (pvdk)
     pkubik
+    PlutonicOverkill
     Radu-Marius Popovici (rpopovici)
     Rafael Moura (dhustkoder)
     rdimesio
@@ -131,6 +133,7 @@ Programmers
     Sebastian Wick (swick)
     Sergey Shambir
     ShadowRadiance
+    Siimacore
     sir_herrbatka
     smbas
     Stefan Galowicz (bogglez)

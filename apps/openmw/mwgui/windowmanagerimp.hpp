@@ -397,7 +397,7 @@ namespace MWGui
     osgMyGUI::Platform* mGuiPlatform;
     osgViewer::Viewer* mViewer;
 
-    std::auto_ptr<Gui::FontLoader> mFontLoader;
+    std::unique_ptr<Gui::FontLoader> mFontLoader;
 
     bool mConsoleOnlyScripts;
 
@@ -539,6 +539,8 @@ namespace MWGui
     void createTextures();
     void createCursors();
     void setMenuTransparency(float value);
+
+    void updatePinnedWindows();
   };
 }
 

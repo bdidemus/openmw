@@ -309,6 +309,7 @@ namespace MWWorld
 
         mDoorStates.clear();
 
+        mGoToJail = false;
         mTeleportEnabled = true;
         mLevitationEnabled = true;
 
@@ -378,8 +379,11 @@ namespace MWWorld
                 return;
             case ESM::REC_PLAY:
                 mPlayer->readRecord(reader, type);
-                mWorldScene->preloadCell(getPlayerPtr().getCell(), true);
-                mWorldScene->preloadTerrain(getPlayerPtr().getRefData().getPosition().asVec3());
+                if (getPlayerPtr().isInCell())
+                {
+                    mWorldScene->preloadCell(getPlayerPtr().getCell(), true);
+                    mWorldScene->preloadTerrain(getPlayerPtr().getRefData().getPosition().asVec3());
+                }
                 break;
             default:
                 if (!mStore.readRecord (reader, type) &&
@@ -2989,7 +2993,7 @@ namespace MWWorld
 
     struct AddDetectedReferenceVisitor
     {
-        AddDetectedReferenceVisitor(std::vector<Ptr>& out, Ptr detector, World::DetectionType type, float squaredDist)
+        AddDetectedReferenceVisitor(std::vector<Ptr>& out, const Ptr& detector, World::DetectionType type, float squaredDist)
             : mOut(out), mDetector(detector), mSquaredDist(squaredDist), mType(type)
         {
         }
@@ -3358,7 +3362,7 @@ namespace MWWorld
 
         if (object.getRefData().activate())
         {
-            boost::shared_ptr<MWWorld::Action> action = (object.getClass().activate(object, actor));
+            std::shared_ptr<MWWorld::Action> action = (object.getClass().activate(object, actor));
             action->execute (actor);
         }
     }
